@@ -8,7 +8,7 @@ import (
 )
 
 type Configuration struct {
-	Port   int
+	Port   string
 	Secret string
 	URL    string
 	FFmpeg string
@@ -40,7 +40,7 @@ func init() {
 func getDevelopmentConfig() Configuration {
 	// Implement development configuration
 	return Configuration{
-		Port:   8080,
+		Port:   "8080",
 		Secret: "dev-secret",
 		URL:    "http://localhost:8080",
 		FFmpeg: "/usr/local/bin/ffmpeg",
@@ -50,13 +50,19 @@ func getDevelopmentConfig() Configuration {
 func getStagingConfig() Configuration {
 	// Implement staging configuration
 	return Configuration{
-		// ... staging config values
+		Port:   "8080",
+		Secret: "dev-secret",
+		URL:    "http://localhost:8080",
+		FFmpeg: "/usr/local/bin/ffmpeg",
 	}
 }
 
 func getProductionConfig() Configuration {
 	// Implement production configuration
 	return Configuration{
-		// ... production config values
+		Port:   "8080",
+		Secret: "dev-secret",
+		URL:    "http://localhost:8080",
+		FFmpeg: "/usr/local/bin/ffmpeg",
 	}
 }

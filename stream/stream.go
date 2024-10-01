@@ -1,18 +1,19 @@
-package routes
+package stream
 
 import (
 	"net/http"
 	"strings"
 
 	"github.com/gin-gonic/gin"
+	"github.com/seb-cook-flyer-marketing/go-rtxp-hls/authorisation"
 	"github.com/seb-cook-flyer-marketing/go-rtxp-hls/config"
-	"github.com/seb-cook-flyer-marketing/go-rtxp-hls/lib/ffmpeg"
-	"github.com/seb-cook-flyer-marketing/go-rtxp-hls/lib/types"
+	"github.com/seb-cook-flyer-marketing/go-rtxp-hls/ffmpeg"
+	"github.com/seb-cook-flyer-marketing/go-rtxp-hls/types"
 )
 
 func RegisterStreamRoutes(router *gin.Engine) {
-	router.POST("/stream/convert", AuthenticationMiddleware(handleStreamConvert))
-	router.POST("/stream/stop", AuthenticationMiddleware(handleStreamStop))
+	router.POST("/stream/convert", authorisation.AuthenticationMiddleware(handleStreamConvert))
+	router.POST("/stream/stop", authorisation.AuthenticationMiddleware(handleStreamStop))
 }
 
 func handleStreamConvert(c *gin.Context) {

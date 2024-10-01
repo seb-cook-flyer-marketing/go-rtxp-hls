@@ -1,4 +1,4 @@
-package routes
+package authorisation
 
 import (
 	"net/http"

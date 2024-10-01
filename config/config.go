@@ -1,6 +1,7 @@
 package config
 
 import (
+	"log"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -16,14 +17,17 @@ type Configuration struct {
 var Config Configuration
 
 func init() {
-	godotenv.Load()
-
-	nodeEnv := os.Getenv("NODE_ENV")
-	if nodeEnv == "" {
-		nodeEnv = "development"
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatalf("Error loading .env file")
 	}
 
-	switch nodeEnv {
+	goEnv := os.Getenv("ENV")
+	if goEnv == "" {
+		goEnv = "development"
+	}
+
+	switch goEnv {
 	case "production":
 		Config = getProductionConfig()
 	case "staging":
